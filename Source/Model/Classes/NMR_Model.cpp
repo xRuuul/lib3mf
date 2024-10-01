@@ -383,7 +383,8 @@ namespace NMR {
 
 			auto it = usedUUIDs.find(value);
 			if (it != usedUUIDs.end()) {
-				throw CNMRException(NMR_ERROR_UUID_NOT_UNIQUE);
+				// TODO ignore for now to allow malformed files
+				//throw CNMRException(NMR_ERROR_UUID_NOT_UNIQUE);
 			}
 			else {
 				usedUUIDs[value] = pUUID;
