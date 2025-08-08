@@ -1,0 +1,1 @@
+.\Test_CPP_Bindings.exe --gtest_filter=ReaderOtherFiles*

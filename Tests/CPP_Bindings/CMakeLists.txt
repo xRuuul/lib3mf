@@ -27,6 +27,7 @@ set(SRCS_UNITTEST
 	./Source/ProgressCallback.cpp
 	./Source/Properties.cpp
 	./Source/Reader.cpp
+	./Source/ReaderOtherFiles.cpp
 	./Source/SecureContent.cpp
 	./Source/Slice.cpp
 	./Source/SliceStack.cpp

@@ -44,6 +44,7 @@ Stream.
 #include "Common/NMR_StringUtils.h"
 #include "Common/NMR_Exception.h"
 #include "Common/NMR_Exception_Windows.h"
+#include <iostream>
 
 namespace NMR {
 
@@ -84,7 +85,7 @@ namespace NMR {
 
 		// Check, if we have created an object
 		if (!m_pObject.get())
-			throw CNMRException(NMR_ERROR_MISSINGOBJECTCONTENT);
+			throw CNMRException(NMR_ERROR_MISSINGOBJECTCONTENT, "Missing object content: ID=" + std::to_string(m_nID) + " Name=" + m_sName);
 
 		// Set Object Parameters
 		m_pObject->setName(m_sName);

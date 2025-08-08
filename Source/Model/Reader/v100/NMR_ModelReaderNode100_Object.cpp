@@ -46,6 +46,7 @@ Stream.
 #include "Common/NMR_Exception.h"
 #include "Common/NMR_Exception_Windows.h"
 #include "Common/MeshInformation/NMR_MeshInformation_Properties.h"
+#include <iostream>
 
 namespace NMR {
 
@@ -95,7 +96,7 @@ namespace NMR {
 
 		// Check, if we have created an object
 		if (!m_pObject.get())
-			throw CNMRException(NMR_ERROR_MISSINGOBJECTCONTENT);
+			throw CNMRException(NMR_ERROR_MISSINGOBJECTCONTENT, "Missing object content: ID=" + std::to_string(m_nID) + " Name=" + m_sName);
 
 		// Set Object Parameters
 		m_pObject->setName(m_sName);
@@ -345,6 +346,17 @@ namespace NMR {
 			}
 		}
     }
+
+	void CModelReaderNode100_Object::OnEndElement(_In_ CXmlReader * pXMLReader) {
+		// WIP check if this works
+		// Check if we have parsed an object
+		if (!m_pObject.get()) {
+			// Create an empty object
+			PMesh pMesh = std::make_shared<CMesh>();
+			PModelMeshObject meshObject = std::make_shared<CModelMeshObject>(m_nID, m_pModel, pMesh);
+			m_pObject = meshObject;
+		}
+	}
 
 	// Create the object-level property from m_nObjectLevelPropertyID, if defined
 	void CModelReaderNode100_Object::createDefaultProperties()
