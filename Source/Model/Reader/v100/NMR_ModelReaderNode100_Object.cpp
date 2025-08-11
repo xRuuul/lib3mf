@@ -355,6 +355,8 @@ namespace NMR {
 			PMesh pMesh = std::make_shared<CMesh>();
 			PModelMeshObject meshObject = std::make_shared<CModelMeshObject>(m_nID, m_pModel, pMesh);
 			m_pObject = meshObject;
+			// Add Object to Parent
+			m_pModel->addResource(m_pObject);
 		}
 	}
 
